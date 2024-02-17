@@ -13,9 +13,9 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/app">
-                <i class="bi bi-file-earmark"></i>
-                <span>Программа</span>
+            <a class="nav-link collapsed" href="{{route('work.history')}}">
+                <i class="bi bi-list-nested"></i>
+                <span>История</span>
             </a>
         </li><!-- End Blank Page Nav -->
 

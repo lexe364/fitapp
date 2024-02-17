@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller{
-    private $data = array();
+    protected $data = array();
 
     public function home_page(){
         $this->data['title'] = 'Home_page FitApp';
