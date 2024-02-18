@@ -68,7 +68,10 @@
 
             <x-form.wrap_item>
                 <x-slot:label></x-slot:label>
-                <button class="btn btn-success" type="submit">Сохранить</button>
+                <button class="btn btn-success me-5" type="submit">Сохранить</button>
+                @if(isset($history))
+                    <a class="btn btn-secondary" href="{{route('work.destroy',$history->id)}}" onclick="return confirm('?')">Удалить</a>
+                @endif
             </x-form.wrap_item>
 
             <?php dump($history?->toArray()??[]);?>

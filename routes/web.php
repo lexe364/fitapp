@@ -23,6 +23,9 @@ Route::post('/work/store', [WorkHistoryController::class, 'store'])
 //обновление трени
 Route::post('/work/update/{work_history_model}', [WorkHistoryController::class, 'update'])
     ->name('work.update');
+// удаление трени
+Route::get('/work/destroy/{work_history_model}', [WorkHistoryController::class, 'destroy'])
+    ->name('work.destroy');
 
 
 Route::get('/work/item/create', [WorkItemController::class, 'create'])

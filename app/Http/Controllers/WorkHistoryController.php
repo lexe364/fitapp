@@ -73,8 +73,10 @@ class WorkHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
+    public function destroy(string $id){
+        $model = WorkHistoryModel::query()->findOrFail($id);
+        $model->delete();
+        return redirect()->route('work.history');
         //
     }
 
