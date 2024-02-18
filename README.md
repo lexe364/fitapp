@@ -1,8 +1,8 @@
-Проект  об истории тренировок. 
+##Проект об истории тренировок. 
  
-при  первом запуске:
+###при первом запуске:
  
-
+```
 composer update
 
 php artisan key:generate
@@ -10,6 +10,7 @@ php artisan key:generate
 php artisan store:link
 
 php artisan migrate
+```
 
-
+рабочая папка `www`
 

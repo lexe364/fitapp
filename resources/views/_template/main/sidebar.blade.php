@@ -179,7 +179,7 @@
             <a class="nav-link " data-bs-target="#icons-nav" data-bs-toggle="collapse" href="/_template/#">
                 <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="icons-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+            <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="/_template/icons-bootstrap.html"  class="active">
                         <i class="bi bi-circle"></i><span>Bootstrap Icons</span>

@@ -31,6 +31,7 @@ return new class extends Migration
 
             //дата тренеровки
             $table->date('date')->nullable();
+            $table->datetime('datetime')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

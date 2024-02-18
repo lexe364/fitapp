@@ -4,14 +4,14 @@ namespace App\Http\Requests\work;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateWorkRequest extends FormRequest
+class UpdateWorkRequest extends CreateWorkRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return parent::authorize();
     }
 
     /**
@@ -21,6 +21,7 @@ class UpdateWorkRequest extends FormRequest
      */
     public function rules(): array
     {
+        return parent::rules();
         return [
             //
         ];

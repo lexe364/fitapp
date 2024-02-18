@@ -25,6 +25,9 @@ class CreateWorkRequest extends FormRequest
             $this->merge(['item_id'=>$item_model->id]);
 //            $this->item_id = $item_model->id;
         }
+        if(empty($this->name)){
+            $this->merge(['name'=>str_replace('T',' ',$this->datetime)]);
+        }
 //        $this->merge();
     }
 
@@ -35,13 +38,14 @@ class CreateWorkRequest extends FormRequest
      */
     public function rules(): array{
         return [
-            'name'=>['required','string','min:1'],
+            'name'=>['nullable','string','min:0'],
             'item_id'=>['required','int',Rule::exists('work_items','id')],
             'user_id'=>['sometimes','int',Rule::exists('users','id')],
-            'item_name'=>['sometimes','string','max:2048'],
+            'item_name'=>['nullable','string','max:2048'],
 //            'date'=>['required','date'],
+            'datetime'=>['required','string'],
             'colling_days'=>['required','int'],
-            'comment'=>['sometimes','string'],
+            'comment'=>['nullable','string'],
         ];
     }
 
