@@ -22,6 +22,9 @@ class WorkHistoryModel extends Model
         'colling_days',
         'comment',
     ];
+    protected $attributes = [
+        'date'=>null
+    ];
 //
 //    protected function items(){
 //        return $this->hasMany(WorkItemModel::class,'id','item_id');

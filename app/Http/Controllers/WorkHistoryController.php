@@ -32,7 +32,6 @@ class WorkHistoryController extends Controller
     {
         $seta = $request->validated();
         $model = WorkHistoryModel::create($seta);
-        dd($seta);
 
         return to_route('work.edit',$model->id);
         //
@@ -50,7 +49,11 @@ class WorkHistoryController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)    {
-        dd($id);
+        $model = WorkHistoryModel::query()->findOrFail($id);
+        $this->data['work_items'] = WorkItemModel::get_all();
+        $this->data['history']= $model;
+        $this->data['title']= $model->name;
+        return $this->render('work.history.create_edit_history');
         //
     }
 

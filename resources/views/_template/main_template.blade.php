@@ -39,7 +39,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>{{$title??''}}</h1>
+{{--        <h1>{{$title??''}}</h1>--}}
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i></a></li>
@@ -50,6 +50,7 @@
 
     <section class="section">
         @yield('content')
+ @include('_template.main.form_errors')
     </section>
 
 </main><!-- End #main -->
