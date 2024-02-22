@@ -6,7 +6,10 @@ use App\Http\Controllers\WorkItemController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [HomeController::class,'home_page'])->name('home_page');
+//Route::get('/', [HomeController::class,'home_page'])->name('home_page');
+Route::get('/', function (){
+    return to_route('work.history');
+})->name('home_page');
 
 //итория тренировок
 Route::get('/work/history', [WorkHistoryController::class, 'history'])
@@ -23,6 +26,9 @@ Route::post('/work/store', [WorkHistoryController::class, 'store'])
 //обновление трени
 Route::post('/work/update/{work_history_model}', [WorkHistoryController::class, 'update'])
     ->name('work.update');
+//обновление трени
+Route::get('/work/duplicate/{work_history_model}', [WorkHistoryController::class, 'duplicate'])
+    ->name('work.duplicate');
 // удаление трени
 Route::get('/work/destroy/{work_history_model}', [WorkHistoryController::class, 'destroy'])
     ->name('work.destroy');

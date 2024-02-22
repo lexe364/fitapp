@@ -16,6 +16,7 @@ return new class extends Migration
 
             //имя тренеровки
             $table->string('name');
+            $table->text('text')->nullable();
             $table->text('comment')->nullable();
             //пользователь системы
             $table->foreignIdFor(\App\Models\User::class)

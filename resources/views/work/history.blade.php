@@ -1,7 +1,7 @@
 @extends('_template.main_template')
 @section('title',$title??'')
 @section('breadcrumb_li_items')
-    <li class="breadcrumb-item ">Главаня</li>
+    <li class="breadcrumb-item ">Главная</li>
     <li class="breadcrumb-item active">История тренировок</li>
     {{--    <li class="breadcrumb-item active">Remix</li>--}}
 @endsection
@@ -18,10 +18,13 @@
 {{--                <td>{{$history['name']}}</td>--}}
                 <td><a href="{route('work.item.edit',$history['item_id'])}}">{{$history->item->name}}</a></td>
                 <td><a href="{{route('work.edit',$history['id'])}}">{{(new \Carbon\Carbon($history['datetime']))->format('d.m.Y H:i')}}</a></td>
-{{--                <td>{{$history['after_hours']}}</td>--}}
-{{--                <td>{{$history['colling_days']}}</td>--}}
-{{--                <td>{{$history['count']}}</td>--}}
+
                 <td>{{$history['comment']}}</td>
+                <td>
+                    @if($history['is_need_work'])
+                    <a href="{{route('work.duplicate',$history['id'])}}" class="btn btn-sm btn-dark">Дублировать</a>
+                    @endif
+                </td>
             </tr>
             @if($history['percent'])
                 <tr onclick="window.location.assign('{{route('work.edit',$history['id'])}}')">

@@ -9,10 +9,16 @@
 @section('content')
 
     <x-card>
-        <x-slot:title>{{$title??''}}</x-slot:title>
+
+        <x-slot:title>
+            {{$title??''}}
+            @if(isset($history?->id))
+                <a href="{{route('work.duplicate',$history?->id)}}" class="btn float-end btn-dark">Дублировать</a>
+            @endif
+        </x-slot:title>
 
 {{--        @include('work.history._create_update_form')--}}
-        <form action="{{route('work.'.(isset($history)?'update':'store'),(isset($history)?$history->id:null))}}"
+        <form action="{{route('work.'.(isset($history?->id)?'update':'store'),(isset($history?->id)?$history->id:null))}}"
               method="post">
             @csrf
 
@@ -29,7 +35,7 @@
                         <select name="item_id" class="form-control">
                             <option value="">[не выбрано]</option>
                             @foreach($work_items??[] as $work_item)
-                                <option <?php echo ((isset($history) AND $work_item->id==$history->item_id)?'selected="selected"':'')?> value="{{$work_item->id}}">{{$work_item->name}}</option>
+                                <option <?php echo ((isset($history?->item_id) AND $work_item->id==$history->item_id)?'selected="selected"':'')?> value="{{$work_item->id}}">{{$work_item->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -47,12 +53,12 @@
                     <div class="row">
                         <div class="col-sm-16 col-md-6">
                             <div class="">Дней на восстановление</div>
-                    <input type="number" name="colling_days" class="form-control" value="{{old('colling_days',(isset($history)?$history->colling_days:7))}}">
+                    <input type="number" name="colling_days" class="form-control" value="{{old('colling_days',(isset($history?->colling_days)?$history->colling_days:7))}}">
                         </div>
                         <div class="col-sm-16 col-md-6">
                             <div class="">Дата</div>
 {{--                    <input type="date" name="date" class="form-control" value="{{old('date',(isset($history)?$history->date:date('Y-m-d')))}}">--}}
-                    <input type="datetime-local" name="datetime" class="form-control" value="{{old('datetime',(isset($history)?$history->datetime:date('Y-m-d H:i')))}}">
+                    <input type="datetime-local" name="datetime" class="form-control" value="{{old('datetime',(isset($history?->datetime)?$history->datetime:date('Y-m-d H:i')))}}">
                         </div>
                     </div>
             </x-form.wrap_item>
@@ -60,7 +66,7 @@
             <x-form.wrap_item>
                 <x-slot:label>Что делалось</x-slot:label>
                  <div>
-                     <textarea name="comment" class="form-control " rows="2">{{old('comment',(isset($history)?$history->comment:''))}}</textarea>
+                     <textarea name="comment" class="form-control " rows="2">{{old('comment',($history?->comment??''))}}</textarea>
                  </div>
 
             </x-form.wrap_item>
@@ -69,7 +75,7 @@
             <x-form.wrap_item>
                 <x-slot:label></x-slot:label>
                 <button class="btn btn-success me-5" type="submit">Сохранить</button>
-                @if(isset($history))
+                @if(isset($history?->id))
                     <a class="btn btn-secondary" href="{{route('work.destroy',$history->id)}}" onclick="return confirm('?')">Удалить</a>
                 @endif
             </x-form.wrap_item>

@@ -6,6 +6,7 @@ use App\Http\Requests\work\CreateWorkRequest;
 use App\Http\Requests\work\UpdateWorkRequest;
 use App\Models\WorkHistoryModel;
 use App\Models\WorkItemModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WorkHistoryController extends Controller
@@ -42,9 +43,13 @@ class WorkHistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function duplicate(string $id){
+        $model = WorkHistoryModel::query()->findOrFail($id);
+        $this->data['work_items'] = WorkItemModel::get_all();
+        $this->data['history']= $model->replicate();
+        $this->data['history']->datetime= new Carbon();
+        $this->data['title']= $model->name;
+        return $this->render('work.history.create_edit_history');
     }
 
     /**
@@ -82,6 +87,8 @@ class WorkHistoryController extends Controller
 
     private function prepire_history() {
         foreach ($this->data['history_items'] as &$history_item){
+            $history_item['is_need_work'] = false;
+            $history_item['is_done'] = false;
             $history_item['after_days'] = (new \Carbon\Carbon('now'))->diffInDays($history_item['datetime']);
 //            $history_item['percent'] = round($history_item['after_days']/$history_item['colling_days']*100);
 
@@ -89,14 +96,19 @@ class WorkHistoryController extends Controller
             $history_item['after_hours'] = (new \Carbon\Carbon('now'))->diffInHours($history_item['datetime']);
             if($history_item['after_hours']){
                 $history_item['percent'] = round($history_item['after_hours']/($history_item['colling_days']*24)*100);
-
+                if($history_item['percent']>90){
+                    $history_item['is_need_work'] = true;
+                }
                 //Еслли прошло дней больше чем нужно - ищет тренировки после этого дня . с таким  item_id
                 if($history_item['percent']>100){
                     if(!$history_item['count'] = $history_item->check_new_history()){
                         $history_item['html_class'] = 'success need_work';
+                        $history_item['is_need_work'] = true;
                     }else{
                         $history_item['percent'] = null;
                         $history_item['html_class'] = 'secondary done';
+                        $history_item['is_done'] = 1;
+                        $history_item['is_need_work'] = false;
                     }
 //                    dd($count);
                 }
