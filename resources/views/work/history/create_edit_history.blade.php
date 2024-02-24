@@ -66,7 +66,7 @@
             <x-form.wrap_item>
                 <x-slot:label>Что делалось</x-slot:label>
                  <div>
-                     <textarea name="comment" class="form-control " rows="2">{{old('comment',($history?->comment??''))}}</textarea>
+                     <textarea name="work" class="form-control " rows="2">{{old('work',($history?->work??''))}}</textarea>
                  </div>
 
             </x-form.wrap_item>

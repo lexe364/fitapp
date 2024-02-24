@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,6 +23,14 @@ class WorkHistoryModel extends Model
         'datetime',
         'colling_days',
         'comment',
+        'work',
+        'heft',
+        'touch_count',
+        'retry_count',
+        'feeling',
+        'feeling_text',
+        'hours_after_last_work',
+        'percent_last_work',
     ];
     protected $attributes = [
         'date'=>null,
@@ -45,5 +54,11 @@ class WorkHistoryModel extends Model
                             ->orderBy('datetime')
             ->count();
 
+    }
+    public function get_after_hours():string|int {
+        return (new \Carbon\Carbon('now'))->diffInHours((new Carbon($this->datetime)));
+    }
+    public function get_percent():string|int {
+        return  round($this->get_after_hours()/($this->colling_days*24)*100);
     }
 }

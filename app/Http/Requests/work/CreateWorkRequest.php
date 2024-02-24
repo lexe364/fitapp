@@ -46,6 +46,17 @@ class CreateWorkRequest extends FormRequest
             'datetime'=>['required','string'],
             'colling_days'=>['required','int'],
             'comment'=>['nullable','string'],
+
+            'work'=>['nullable','string'],
+            'heft'=>['nullable','string','max:50'],
+            'touch_count'=>['nullable','string','max:50'],
+            'retry_count'=>['nullable','string','max:50'],
+
+            'feeling'=>['nullable','float'],
+            'feeling_text'=>['nullable','string','max:250'],
+
+            'hours_after_last_work'=>['nullable','int'],
+            'percent_last_work'=>['nullable','int'],
         ];
     }
 

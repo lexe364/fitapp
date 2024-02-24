@@ -34,6 +34,19 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->datetime('datetime')->nullable();
 
+
+            $table->text('work')->nullable()->comment('что делалось');
+             $table->string('heft',50)->nullable()->comment('вес');
+             $table->string('touch_count',50)->nullable()->comment('подходов');
+             $table->string('retry_count',50)->nullable()->comment('повторений');
+
+            $table->float('feeling')->default(0.5)->nullable()->comment('ощущение_коэф');
+            $table->string('feeling_text',250)->nullable()->comment('ощущение_текст');
+
+            $table->integer('hours_after_last_work')->nullable()->comment('прошло часов с прошлой тренировки');
+            $table->integer('percent_last_work')->nullable()->comment('процент прошлой тренировки');
+
+
             $table->softDeletes();
             $table->timestamps();
         });

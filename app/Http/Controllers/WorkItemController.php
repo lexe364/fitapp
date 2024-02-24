@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\work\UpdateWorkItemRequest;
+use App\Models\WorkItemModel;
 use Illuminate\Http\Request;
 
 class WorkItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index()    {        //
     }
 
     /**
@@ -30,28 +27,26 @@ class WorkItemController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
+    public function show(string $id)    {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+    public function edit(string $id){
+        $model = WorkItemModel::getByID($id);
+        $this->data['title'] = $model->name;//'Часть тела: '.
+        $this->data['item'] = $model;
+//        $this->data['item'] = $model->toArray();
+        return $this->render('work.item.edit_item');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(UpdateWorkItemRequest $request, string $id){
+        $seta = $request->validated();
+        $model = WorkItemModel::getByID($id);
+        $model->update($seta);
+        alert('Сохранено');
+        return redirect()->back();
     }
 
     /**

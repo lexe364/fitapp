@@ -21,7 +21,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained();
 
-
+            $table->string('image_key',250)->nullable()->comment('Ключ в настройках(имя изображения)');
             $table->softDeletes();
             $table->timestamps();
         });

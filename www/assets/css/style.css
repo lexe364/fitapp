@@ -1231,3 +1231,30 @@ h6 {
     font-size: 13px;
     color: #012970;
 }
+.wrap_muclu_chel{min-height: 566px;}
+.chel_fon{position:absolute;}
+.muscul_img{position:absolute;filter: hue-rotate(270deg);}
+
+.filter_grayscale50 {
+    filter:grayscale(50%);
+}
+.filter_grayscale75 {
+    filter:grayscale(75%);
+}
+.filter_grayscale100{
+    filter:grayscale(100%);
+}
+.percent30p{filter: hue-rotate(135deg);}
+.percent30p50{filter: hue-rotate(145deg);}
+.percent50p75{filter: hue-rotate(155deg);}
+.percent75p100{filter: hue-rotate(185deg);}
+.percent130p{filter: hue-rotate(220deg);}
+/*.filter_hue-rotate130{filter: hue-rotate(130deg);}*/
+.filter_hue-rotate135{filter: hue-rotate(135deg);}
+/*.filter_hue-rotate140{filter: hue-rotate(140deg);}*/
+/*.filter_hue-rotate145{filter: hue-rotate(145deg);}*/
+/*.filter_hue-rotate160{filter: hue-rotate(160deg);}*/
+.filter_hue-rotate185{filter: hue-rotate(185deg);}
+/*.filter_hue-rotate190{filter: hue-rotate(190deg);}*/
+/*.filter_hue-rotate205{filter: hue-rotate(205deg);}*/
+.filter_hue-rotate225{filter: hue-rotate(225deg);}

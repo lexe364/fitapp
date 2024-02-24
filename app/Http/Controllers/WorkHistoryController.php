@@ -17,6 +17,7 @@ class WorkHistoryController extends Controller
     public function history()    {
         $this->data['history_items'] = WorkHistoryModel::get_all();
         $this->prepire_history();
+        $this->load_work_muscle_names();
         return $this->render('work.history');
     }
 
@@ -93,9 +94,9 @@ class WorkHistoryController extends Controller
 //            $history_item['percent'] = round($history_item['after_days']/$history_item['colling_days']*100);
 
             //считаем прогресс бар
-            $history_item['after_hours'] = (new \Carbon\Carbon('now'))->diffInHours($history_item['datetime']);
+            $history_item['after_hours'] = $history_item->get_after_hours();
             if($history_item['after_hours']){
-                $history_item['percent'] = round($history_item['after_hours']/($history_item['colling_days']*24)*100);
+                $history_item['percent'] = $history_item->get_percent();
                 if($history_item['percent']>90){
                     $history_item['is_need_work'] = true;
                 }
@@ -115,5 +116,11 @@ class WorkHistoryController extends Controller
             }
 
         }
+    }
+
+
+    private function load_work_muscle_names() {
+        $this->data['work_items_with_image_key'] = (WorkItemModel::get_with_image_keys());
+        return ;
     }
 }
