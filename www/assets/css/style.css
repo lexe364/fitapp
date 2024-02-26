@@ -1248,7 +1248,9 @@ h6 {
 .percent30p50{filter: hue-rotate(145deg);}
 .percent50p75{filter: hue-rotate(155deg);}
 .percent75p100{filter: hue-rotate(185deg);}
-.percent130p{filter: hue-rotate(220deg);}
+.percent100p150{filter: hue-rotate(225deg);}
+.percent150p250{filter: hue-rotate(255deg);}
+.percent250p{filter: hue-rotate(280deg);}
 /*.filter_hue-rotate130{filter: hue-rotate(130deg);}*/
 .filter_hue-rotate135{filter: hue-rotate(135deg);}
 /*.filter_hue-rotate140{filter: hue-rotate(140deg);}*/

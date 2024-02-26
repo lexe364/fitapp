@@ -70,6 +70,13 @@
                  </div>
 
             </x-form.wrap_item>
+            <x-form.wrap_item>
+                <x-slot:label>Комментарий</x-slot:label>
+                 <div>
+                     <textarea name="comment" class="form-control " rows="2">{{old('comment',($history?->comment??''))}}</textarea>
+                 </div>
+
+            </x-form.wrap_item>
 
 
             <x-form.wrap_item>

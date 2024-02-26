@@ -55,16 +55,20 @@ class WorkItemModel extends Model
 //                d($last_work);
 //                d($this->works()->get());
                 $class .= ' percent_'.($percent=$last_work->get_percent());
-                if($percent<=30){
-                    $class .= ' percent30p filter_hue-rotate135';
-                }elseif($percent>30 AND $percent<50){
-                    $class .= ' percent30p50 filter_hue-rotate185';
-                }elseif($percent>40 AND $percent<75){
-                    $class .= ' percent50p75 filter_hue-rotate185';
-                }elseif($percent>75 AND $percent>100){
-                    $class .= ' percent75p100 filter_hue-rotate225';
-                }elseif( $percent>130){
-                    $class .= ' percent130p filter_hue-rotate225';
+                if($percent<30){
+                    $class .= ' percent30p ';
+                }elseif($percent>=30 AND $percent<50){
+                    $class .= ' percent30p50 ';
+                }elseif($percent>=40 AND $percent<75){
+                    $class .= ' percent50p75 ';
+                }elseif($percent>=75 AND $percent<100){
+                    $class .= ' percent75p100 ';
+                }elseif( $percent>=100 AND $percent<150){
+                    $class .= ' percent100p150 ';
+                }elseif( $percent>=150 AND $percent<250){
+                    $class .= ' percent150p250 ';
+                }elseif(  $percent>=250){
+                    $class .= ' percent250p ';
                 }
                 break;
         }
